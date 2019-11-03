@@ -64,7 +64,27 @@ class InterfaceController: WKInterfaceController {
         clockedIn = false
         
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
-            print(clockedInDate)
+            if var clockIns = UserDefaults.standard.array(forKey: "clockins") as? [Date] {
+                clockIns.insert(clockedInDate, at: 0)
+                UserDefaults.standard.set(clockIns, forKey: "clockins")
+            }
+            else
+            {
+                UserDefaults.standard.set([clockedInDate], forKey: "clockins")
+            }
+            
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockouts") as? [Date] {
+               clockOuts.insert(Date(), at: 0)
+               UserDefaults.standard.set(clockOuts, forKey: "clockouts")
+           }
+           else
+           {
+               UserDefaults.standard.set([Date()], forKey: "clockouts")
+           }
+            
+            UserDefaults.standard.set(nil, forKey: "clockedIn")
         }
+        
+        UserDefaults.standard.synchronize()
     }
 }
