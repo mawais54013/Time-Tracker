@@ -29,16 +29,18 @@ class InterfaceController: WKInterfaceController {
         if clockedIn {
 //            The ui for someone is clocked in
             topLabel.setHidden(false)
-            middleLabel.setText("5m 22s")
+            self.topLabel.setText("Today: \(totalTimeWorkedAsString())")
+            middleLabel.setText("0s")
             button.setTitle("Clocked-Out")
             button.setBackgroundColor(UIColor.red)
         }
         else {
 //            ui for someone is clocked out
             topLabel.setHidden(true)
-            middleLabel.setText("Today\n3h 44m")
             button.setTitle("Clocked-In")
             button.setBackgroundColor(UIColor.green)
+            
+            middleLabel.setText("Today\n\(totalTimeWorkedAsString())")
         }
     }
     
@@ -67,7 +69,20 @@ class InterfaceController: WKInterfaceController {
                 let minutes = (timeInterval % 3600) / 60
                 let seconds = timeInterval % 60
                 
-                self.middleLabel.setText("\(hours)h \(minutes)m \(seconds)s")
+                var currentClockedInString = ""
+                
+                if hours != 0 {
+                    currentClockedInString += "\(hours)h "
+                }
+                if minutes != 0 || hours != 0 {
+                    currentClockedInString += " \(minutes)m "
+                }
+                
+                currentClockedInString += "\(seconds)s"
+                
+                self.middleLabel.setText(currentClockedInString)
+                
+                self.topLabel.setText("Today: \(self.totalTimeWorkedAsString())")
             }
         }
     }
@@ -98,5 +113,38 @@ class InterfaceController: WKInterfaceController {
         }
         
         UserDefaults.standard.synchronize()
+        
+    }
+    
+    func totalClockedTime() -> Int {
+        if var clockIns = UserDefaults.standard.array(forKey: "clockins") as? [Date] {
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockouts") as? [Date] {
+                
+                var seconds = 0
+                for index in 0..<clockIns.count {
+                    let currentSeconds = Int(clockOuts[index].timeIntervalSince(clockIns[index]))
+                    
+                    seconds += currentSeconds
+                }
+                return seconds
+            }
+        }
+        return 0
+    }
+    
+    func totalTimeWorkedAsString() -> String {
+        
+        var currentClockInSeconds = 0
+        
+        if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
+            currentClockInSeconds = Int(Date().timeIntervalSince(clockedInDate))
+        }
+            
+        let totalTimeInterval = currentClockInSeconds + self.totalClockedTime()
+        let totalHours = totalTimeInterval / 3600
+        let totalMinutes = (totalTimeInterval % 3600) / 60
+        
+        return "\(totalHours)h \(totalMinutes)m"
+        
     }
 }
