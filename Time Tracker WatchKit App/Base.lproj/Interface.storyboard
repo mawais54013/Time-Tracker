@@ -27,6 +27,12 @@
                             <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </separator>
                     </items>
+                    <menu key="menu" id="7gd-bF-Tm4">
+                        <items>
+                            <menuItem title="Item 1" icon="repeat" id="RFD-Wq-5nm"/>
+                            <menuItem title="Item 2" icon="speaker" id="t6u-qr-web"/>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="button" destination="zML-as-Pni" id="Z45-Pd-82Y"/>
                         <outlet property="middleLabel" destination="6qZ-uU-zTQ" id="DMJ-Ec-Rss"/>
