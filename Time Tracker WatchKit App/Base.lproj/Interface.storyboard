@@ -60,7 +60,9 @@
                                 <tableRow identifier="clockInOutRow" id="ova-dD-Lcu" customClass="ClockInOutRowController" customModule="Time_Tracker_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="XOm-QB-XL9">
                                         <items>
-                                            <label alignment="left" text="Label" id="gAS-Dw-UYa"/>
+                                            <label width="1" height="1" alignment="left" verticalAlignment="center" text="Label" id="gAS-Dw-UYa">
+                                                <fontDescription key="font" type="system" pointSize="22"/>
+                                            </label>
                                         </items>
                                     </group>
                                     <connections>
@@ -76,6 +78,24 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="276" y="23"/>
+        </scene>
+        <!--TimeDetail-->
+        <scene sceneID="ZdP-7L-BjU">
+            <objects>
+                <controller identifier="TimeDetail" id="5Ji-fe-9tu" customClass="DetailInterfaceController" customModule="Time_Tracker_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="Clock-In" id="x3p-ge-z9w"/>
+                        <label alignment="left" text="Label" id="Mqq-fU-K7k"/>
+                        <label alignment="left" text="Clock-Out" id="qvP-ph-UfH"/>
+                        <label alignment="left" text="Label" id="IXx-EO-Dd3"/>
+                    </items>
+                    <connections>
+                        <outlet property="clockInLabel" destination="Mqq-fU-K7k" id="Ic8-Ar-TQD"/>
+                        <outlet property="clockOutLabel" destination="IXx-EO-Dd3" id="Evi-Zp-sfb"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="530" y="23"/>
         </scene>
     </scenes>
 </document>
