@@ -18,11 +18,31 @@ class InterfaceController: WKInterfaceController {
     
     var clockedIn = false
     
+    var timer : Timer? = nil
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
-        updateUI(clockedIn: clockedIn)
+
+    }
+    
+    override func willActivate() {
+        if UserDefaults.standard.value(forKey: "clockedIn") != nil {
+            
+            if timer == nil {
+                startUpTimer()
+            }
+            
+            clockedIn = true
+            
+            updateUI(clockedIn: true)
+        }
+        else
+        {
+            clockedIn = false
+            updateUI(clockedIn: false)
+        }
     }
     
     func updateUI(clockedIn:Bool) {
@@ -55,13 +75,8 @@ class InterfaceController: WKInterfaceController {
         updateUI(clockedIn: clockedIn)
     }
     
-    func clockIn() {
-        clockedIn = true
-        
-        UserDefaults.standard.set(Date(), forKey: "clockedIn")
-        UserDefaults.standard.synchronize()
-        
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+    func startUpTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
                 let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
                 
@@ -87,8 +102,20 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    func clockIn() {
+        clockedIn = true
+        
+        UserDefaults.standard.set(Date(), forKey: "clockedIn")
+        UserDefaults.standard.synchronize()
+        
+        startUpTimer()
+    }
+    
     func clockOut() {
         clockedIn = false
+        
+        timer?.invalidate()
+        timer = nil
         
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
             if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date] {
