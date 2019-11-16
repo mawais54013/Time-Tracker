@@ -20,6 +20,8 @@
 		B5292AE9236E7889001C095A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5292AE8236E7889001C095A /* InterfaceController.swift */; };
 		B5292AEB236E7889001C095A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5292AEA236E7889001C095A /* ExtensionDelegate.swift */; };
 		B5292AED236E788A001C095A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5292AEC236E788A001C095A /* Assets.xcassets */; };
+		B5B7555A23807DE400C6742B /* TimeTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B7555923807DE400C6742B /* TimeTableInterfaceController.swift */; };
+		B5B7555C23808A7B00C6742B /* ClockInOutRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B7555B23808A7B00C6742B /* ClockInOutRowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		B5292AEA236E7889001C095A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B5292AEC236E788A001C095A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5292AEE236E788A001C095A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B7555923807DE400C6742B /* TimeTableInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInterfaceController.swift; sourceTree = "<group>"; };
+		B5B7555B23808A7B00C6742B /* ClockInOutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockInOutRowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				B5292AE8236E7889001C095A /* InterfaceController.swift */,
+				B5B7555B23808A7B00C6742B /* ClockInOutRowController.swift */,
+				B5B7555923807DE400C6742B /* TimeTableInterfaceController.swift */,
 				B5292AEA236E7889001C095A /* ExtensionDelegate.swift */,
 				B5292AEC236E788A001C095A /* Assets.xcassets */,
 				B5292AEE236E788A001C095A /* Info.plist */,
@@ -300,7 +306,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5292AEB236E7889001C095A /* ExtensionDelegate.swift in Sources */,
+				B5B7555A23807DE400C6742B /* TimeTableInterfaceController.swift in Sources */,
 				B5292AE9236E7889001C095A /* InterfaceController.swift in Sources */,
+				B5B7555C23808A7B00C6742B /* ClockInOutRowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

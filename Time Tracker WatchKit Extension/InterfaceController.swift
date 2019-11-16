@@ -31,13 +31,13 @@ class InterfaceController: WKInterfaceController {
             topLabel.setHidden(false)
             self.topLabel.setText("Today: \(totalTimeWorkedAsString())")
             middleLabel.setText("0s")
-            button.setTitle("Clocked-Out")
+            button.setTitle("Clock-Out")
             button.setBackgroundColor(UIColor.red)
         }
         else {
 //            ui for someone is clocked out
             topLabel.setHidden(true)
-            button.setTitle("Clocked-In")
+            button.setTitle("Clock-In")
             button.setBackgroundColor(UIColor.green)
             
             middleLabel.setText("Today\n\(totalTimeWorkedAsString())")
@@ -91,22 +91,22 @@ class InterfaceController: WKInterfaceController {
         clockedIn = false
         
         if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
-            if var clockIns = UserDefaults.standard.array(forKey: "clockins") as? [Date] {
+            if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date] {
                 clockIns.insert(clockedInDate, at: 0)
-                UserDefaults.standard.set(clockIns, forKey: "clockins")
+                UserDefaults.standard.set(clockIns, forKey: "clockIns")
             }
             else
             {
-                UserDefaults.standard.set([clockedInDate], forKey: "clockins")
+                UserDefaults.standard.set([clockedInDate], forKey: "clockIns")
             }
             
-            if var clockOuts = UserDefaults.standard.array(forKey: "clockouts") as? [Date] {
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockOuts") as? [Date] {
                clockOuts.insert(Date(), at: 0)
-               UserDefaults.standard.set(clockOuts, forKey: "clockouts")
+               UserDefaults.standard.set(clockOuts, forKey: "clockOuts")
            }
            else
            {
-               UserDefaults.standard.set([Date()], forKey: "clockouts")
+               UserDefaults.standard.set([Date()], forKey: "clockOuts")
            }
             
             UserDefaults.standard.set(nil, forKey: "clockedIn")
@@ -117,8 +117,8 @@ class InterfaceController: WKInterfaceController {
     }
     
     func totalClockedTime() -> Int {
-        if var clockIns = UserDefaults.standard.array(forKey: "clockins") as? [Date] {
-            if var clockOuts = UserDefaults.standard.array(forKey: "clockouts") as? [Date] {
+        if var clockIns = UserDefaults.standard.array(forKey: "clockIns") as? [Date] {
+            if var clockOuts = UserDefaults.standard.array(forKey: "clockOuts") as? [Date] {
                 
                 var seconds = 0
                 for index in 0..<clockIns.count {
@@ -149,7 +149,18 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func resetAllTapped() {
+        UserDefaults.standard.set(nil, forKey: "clockedIn")
         
+        UserDefaults.standard.set(nil, forKey: "clockIns")
+        UserDefaults.standard.set(nil, forKey: "clockOuts")
+        
+        UserDefaults.standard.synchronize()
+        
+        updateUI(clockedIn: false)
+    }
+    
+    @IBAction func historyTapped() {
+        pushController(withName: "TimeTableController", context: nil)
     }
     
 }

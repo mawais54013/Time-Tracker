@@ -29,7 +29,11 @@
                     </items>
                     <menu key="menu" id="7gd-bF-Tm4">
                         <items>
-                            <menuItem title="History" icon="info" id="RFD-Wq-5nm"/>
+                            <menuItem title="History" icon="info" id="RFD-Wq-5nm">
+                                <connections>
+                                    <action selector="historyTapped" destination="AgC-eL-Hgc" id="KIf-XF-K3X"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Reset All" icon="trash" id="t6u-qr-web">
                                 <connections>
                                     <action selector="resetAllTapped" destination="AgC-eL-Hgc" id="PrM-n4-goD"/>
@@ -45,6 +49,33 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="34" y="31"/>
+        </scene>
+        <!--TimeTableController-->
+        <scene sceneID="4Fh-5A-v1B">
+            <objects>
+                <controller identifier="TimeTableController" id="RJm-2Z-wxr" customClass="TimeTableInterfaceController" customModule="Time_Tracker_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="rKe-Wv-3a0">
+                            <items>
+                                <tableRow identifier="clockInOutRow" id="ova-dD-Lcu" customClass="ClockInOutRowController" customModule="Time_Tracker_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="XOm-QB-XL9">
+                                        <items>
+                                            <label alignment="left" text="Label" id="gAS-Dw-UYa"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="gAS-Dw-UYa" id="8Aa-sp-wVF"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="rKe-Wv-3a0" id="cAV-JI-iVI"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="276" y="23"/>
         </scene>
     </scenes>
 </document>
