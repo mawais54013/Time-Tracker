@@ -147,4 +147,9 @@ class InterfaceController: WKInterfaceController {
         return "\(totalHours)h \(totalMinutes)m"
         
     }
+    
+    @IBAction func resetAllTapped() {
+        
+    }
+    
 }

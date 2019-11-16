@@ -29,8 +29,12 @@
                     </items>
                     <menu key="menu" id="7gd-bF-Tm4">
                         <items>
-                            <menuItem title="Item 1" icon="repeat" id="RFD-Wq-5nm"/>
-                            <menuItem title="Item 2" icon="speaker" id="t6u-qr-web"/>
+                            <menuItem title="History" icon="info" id="RFD-Wq-5nm"/>
+                            <menuItem title="Reset All" icon="trash" id="t6u-qr-web">
+                                <connections>
+                                    <action selector="resetAllTapped" destination="AgC-eL-Hgc" id="PrM-n4-goD"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                     <connections>
